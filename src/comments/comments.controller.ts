@@ -19,6 +19,8 @@ export class CommentsController {
     @Request() req,
     @Body() commentData: { walletAddress:string, content: string; coinId: string },
   ) {
+    console.log(commentData);
+    
     return this.commentsService.create(
       commentData.walletAddress,
       commentData.content,
