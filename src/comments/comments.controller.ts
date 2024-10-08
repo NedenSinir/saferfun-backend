@@ -14,14 +14,13 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 export class CommentsController {
   constructor(private commentsService: CommentsService) {}
 
-  @UseGuards(JwtAuthGuard)
   @Post()
   async createComment(
     @Request() req,
-    @Body() commentData: { content: string; coinId: string },
+    @Body() commentData: { walletAddress:string, content: string; coinId: string },
   ) {
     return this.commentsService.create(
-      req.user.walletAddress,
+      commentData.walletAddress,
       commentData.content,
       commentData.coinId,
     );
